@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bloom Diary 🌸</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+
+        <span class="flower flower1">🌸</span>
+        <span class="flower flower2">🌷</span>
+        <span class="flower flower3">✨</span>
+        <span class="flower flower4">🦋</span>
+        <span class="flower flower5">🌼</span>
+    </div>
+
+
+    <!-- ================= AUTH PAGE ================= -->
+
+    <div id="authPage" class="auth-page">
+
+        <!-- LOGIN -->
+        <div id="loginBox" class="auth-card">
+
+            <div class="logo">🌸</div>
+
+            <h1>Bloom Diary</h1>
+
+            <p class="subtitle">
+                Your little space to grow, dream & remember ✨
+            </p>
+
+            <h2>Welcome Back 💕</h2>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button class="primary-btn" onclick="login()">
+                Login 🌷
+            </button>
+
+            <button class="forgot-btn" onclick="showForgot()">
+                Forgot Password?
+            </button>
+
+            <p class="switch-text">
+                Don't have an account?
+                <button class="link-btn" onclick="showSignup()">
+                    Create Account
+                </button>
+            </p>
+
+        </div>
+
+
+        <!-- SIGNUP -->
+        <div id="signupBox" class="auth-card hidden">
+
+            <div class="logo">🌷</div>
+
+            <h1>Create Account</h1>
+
+            <p class="subtitle">
+                Start your beautiful Bloom Diary journey 🌸
+            </p>
+
+            <div class="input-group">
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    id="signupUsername"
+                    placeholder="Choose a username"
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="At least 6 characters"
+                    autocomplete="new-password"
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+
+                <input
+                    type="password"
+                    id="signupConfirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                >
+            </div>
+
+            <button class="primary-btn" onclick="signup()">
+                Create Account 🌸
+            </button>
+
+            <p class="switch-text">
+                Already have an account?
+                <button class="link-btn" onclick="showLogin()">
+                    Login
+                </button>
+            </p>
+
+        </div>
+
+
+        <!-- FORGOT PASSWORD -->
+        <div id="forgotBox" class="auth-card hidden">
+
+            <div class="logo">🔐</div>
+
+            <h1>Reset Password</h1>
+
+            <p class="subtitle">
+                Don't worry, let's help you get back into Bloom Diary 💕
+            </p>
+
+            <div id="resetEmailStep">
+
+                <div class="input-group">
+                    <label>Registered Email</label>
+
+                    <input
+                        type="email"
+                        id="resetEmail"
+                        placeholder="Enter your registered email"
+                    >
+                </div>
+
+                <button class="primary-btn" onclick="verifyEmail()">
+                    Continue 💌
+                </button>
+
+            </div>
+
+
+            <div id="resetPasswordStep" class="hidden">
+
+                <div class="input-group">
+                    <label>New Password</label>
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        placeholder="Create a new password"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>Confirm New Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmNewPassword"
+                        placeholder="Confirm new password"
+                    >
+                </div>
+
+                <button class="primary-btn" onclick="resetPassword()">
+                    Reset Password 🔑
+                </button>
+
+            </div>
+
+            <button class="forgot-btn" onclick="showLogin()">
+                ← Back to Login
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MAIN APP ================= -->
+
+    <div id="appPage" class="app-page hidden">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="brand">
+                🌸 <span>Bloom Diary</span>
+            </div>
+
+            <div class="top-actions">
+
+                <span id="welcomeUser">
+                    Hello 🌷
+                </span>
+
+                <button onclick="toggleTheme()" class="icon-btn">
+                    🌙
+                </button>
+
+                <button onclick="logout()" class="logout-btn">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navigation">
+
+            <button onclick="openSection('home')" class="nav-btn active">
+                🏠 Home
+            </button>
+
+            <button onclick="openSection('journal')" class="nav-btn">
+                📖 Journal
+            </button>
+
+            <button onclick="openSection('growth')" class="nav-btn">
+                🌱 My Growth
+            </button>
+
+            <button onclick="openSection('templates')" class="nav-btn">
+                💌 Templates
+            </button>
+
+            <button onclick="openSection('gallery')" class="nav-btn">
+                🖼️ Gallery
+            </button>
+
+            <button onclick="openSection('travel')" class="nav-btn">
+                ✈️ Travel
+            </button>
+
+            <button onclick="openSection('profile')" class="nav-btn">
+                👤 Profile
+            </button>
+
+        </nav>
+
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <main class="content">
+
+
+            <!-- HOME -->
+
+            <section id="home" class="section active-section">
+
+                <div class="hero-card">
+
+                    <div>
+                        <p class="small-text">WELCOME TO YOUR SAFE SPACE 🌸</p>
+
+                        <h1>
+                            Bloom into the person
+                            <br>
+                            you're becoming.
+                        </h1>
+
+                        <p>
+                            Write your thoughts, celebrate your growth,
+                            save your memories and dream about your future.
+                        </p>
+
+                        <button class="primary-btn small-btn" onclick="openSection('journal')">
+                            Write Today's Diary ✍️
+                        </button>
+                    </div>
+
+                    <div class="hero-flower">
+                        🌷
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="stat-card">
+                        <span>📖</span>
+                        <h3 id="journalCount">0</h3>
+                        <p>Journal Entries</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>🌱</span>
+                        <h3 id="growthCount">0</h3>
+                        <p>Growth Notes</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>🖼️</span>
+                        <h3 id="photoCount">0</h3>
+                        <p>Memories</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>✈️</span>
+                        <h3 id="travelCount">0</h3>
+                        <p>Travel Memories</p>
+                    </div>
+
+                </div>
+
+
+                <div class="quote-card">
+
+                    <span>✨</span>
+
+                    <p id="dailyQuote">
+                        You are growing beautifully.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- JOURNAL -->
+
+            <section id="journal" class="section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="small-text">YOUR THOUGHTS 🌸</p>
+
+                        <h2>Daily Journal</h2>
+
+                        <p id="journalDate"></p>
+                    </div>
+
+                </div>
+
+
+                <div class="journal-card">
+
+                    <label>How are you feeling today?</label>
+
+                    <div class="moods">
+
+                        <button onclick="selectMood('😊')">😊</button>
+                        <button onclick="selectMood('🥰')">🥰</button>
+                        <button onclick="selectMood('😌')">😌</button>
+                        <button onclick="selectMood('😔')">😔</button>
+                        <button onclick="selectMood('😡')">😡</button>
+                        <button onclick="selectMood('😭')">😭</button>
+
+                    </div>
+
+                    <p id="selectedMood">
+                        Choose your mood
+                    </p>
+
+
+                    <label>Today's Entry</label>
+
+                    <textarea
+                        id="journalText"
+                        placeholder="Dear Diary... ✍️"
+                    ></textarea>
+
+
+                    <div class="button-row">
+
+                        <button class="primary-btn" onclick="saveJournal()">
+                            Save Entry 💕
+                        </button>
+
+                        <button class="secondary-btn" onclick="clearJournal()">
+                            Clear
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- GROWTH -->
+
+            <section id="growth" class="section">
+
+                <div class="section-heading">
+
+                    <p class="small-text">BECOMING YOUR BEST SELF 🌱</p>
+
+                    <h2>My Growth</h2>
+
+                    <p>
+                        Small steps are still progress.
+                    </p>
+
+                </div>
+
+
+                <div class="growth-grid">
+
+                    <div class="growth-card">
+
+                        <span>💗</span>
+
+                        <h3>Something I'm Proud Of</h3>
+
+                        <textarea
+                            id="proudText"
+                            placeholder="What are you proud of today?"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="growth-card">
+
+                        <span>🌱</span>
+
+                        <h3>What I Learned</h3>
+
+                        <textarea
+                            id="learnedText"
+                            placeholder="What did you learn?"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="growth-card">
+
+                        <span>🎯</span>
+
+                        <h3>My Goal</h3>
+
+                        <textarea
+                            id="goalText"
+                            placeholder="What is your next goal?"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button class="primary-btn" onclick="saveGrowth()">
+                    Save My Growth 🌸
+                </button>
+
+            </section>
+
+
+
+            <!-- TEMPLATES -->
+
+            <section id="templates" class="section">
+
+                <div class="section-heading">
+
+                    <p class="small-text">NEED INSPIRATION? 💌</p>
+
+                    <h2>Journal Templates</h2>
+
+                    <p>
+                        Choose a template to start writing.
+                    </p>
+
+                </div>
+
+
+                <div class="template-grid">
+
+                    <button onclick="useTemplate('morning')">
+                        🌅
+                        <strong>Morning</strong>
+                        <span>Start your day</span>
+                    </button>
+
+                    <button onclick="useTemplate('night')">
+                        🌙
+                        <strong>Night</strong>
+                        <span>Reflect on your day</span>
+                    </button>
+
+                    <button onclick="useTemplate('love')">
+                        💕
+                        <strong>Love</strong>
+                        <span>Things I appreciate</span>
+                    </button>
+
+                    <button onclick="useTemplate('growth')">
+                        🌱
+                        <strong>Growth</strong>
+                        <span>Personal reflection</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- GALLERY -->
+
+            <section id="gallery" class="section">
+
+                <div class="section-heading">
+
+                    <p class="small-text">YOUR MEMORIES 🖼️</p>
+
+                    <h2>Gallery</h2>
+
+                    <p>Keep your favorite memories close.</p>
+
+                </div>
+
+
+                <div class="upload-card">
+
+                    <label for="photoInput" class="upload-btn">
+                        📸 Add Photo
+                    </label>
+
+                    <input
+                        type="file"
+                        id="photoInput"
+                        accept="image/*"
+                        onchange="addPhoto(event)"
+                        hidden
+                    >
+
+                </div>
+
+
+                <div id="galleryGrid" class="gallery-grid"></div>
+
+            </section>
+
+
+
+            <!-- TRAVEL -->
+
+            <section id="travel" class="section">
+
+                <div class="section-heading">
+
+                    <p class="small-text">ADVENTURES ✈️</p>
+
+                    <h2>Travel Diary</h2>
+
+                    <p>Save the places you have visited.</p>
+
+                </div>
+
+
+                <div class="travel-form">
+
+                    <input
+                        type="text"
+                        id="travelPlace"
+                        placeholder="Place name"
+                    >
+
+                    <input
+                        type="date"
+                        id="travelDate"
+                    >
+
+                    <textarea
+                        id="travelMemory"
+                        placeholder="What did you love about this place?"
+                    ></textarea>
+
+                    <button class="primary-btn" onclick="addTravel()">
+                        Add Memory ✈️
+                    </button>
+
+                </div>
+
+
+                <div id="travelList" class="travel-list"></div>
+
+            </section>
+
+
+
+            <!-- PROFILE -->
+
+            <section id="profile" class="section">
+
+                <div class="section-heading">
+
+                    <p class="small-text">ABOUT YOU 💕</p>
+
+                    <h2>My Profile</h2>
+
+                </div>
+
+
+                <div class="profile-card">
+
+                    <div class="profile-picture">
+
+                        <img
+                            id="profileImage"
+                            src=""
+                            alt="Profile"
+                        >
+
+                        <label for="profileInput">
+                            📷
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profileInput"
+                            accept="image/*"
+                            onchange="changeProfile(event)"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <h2 id="profileUsername">
+                        Username
+                    </h2>
+
+                    <p id="profileEmail">
+                        email@example.com
+                    </p>
+
+                    <p class="profile-message">
+                        Keep blooming 🌸
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
